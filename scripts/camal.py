@@ -21,6 +21,7 @@ class Series(object):
 		self.x = x
 		self.raw_data = raw_data
 		self.data = self.extract(window)
+		self.region = {}
 
 	def get_generator (self, window):
 		self.data = self.extract(window)
@@ -39,6 +40,13 @@ class Series(object):
 
 	def get_point_index (self, index):
 		return (self.x[index], next(itertools.islice(self.data, index, None)))
+
+	def add_region (self, name, index):
+		if name in self.region.keys():
+			self.region[name].append(index)
+		else:
+			self.region[name] = [index]
+
 
 	def plot(self, d_type):
 		f, ax = plt.subplots()
@@ -94,7 +102,6 @@ class Series(object):
 			left, right = self.compare_points(left, right, func)
 
 		return left
-
 
 
 	def fit_linear (self, start, end, d_type):
