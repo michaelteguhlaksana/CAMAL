@@ -1,0 +1,11 @@
+name: camal
+
+
+dependencies:
+
+  - git
+  - python=3.9
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
